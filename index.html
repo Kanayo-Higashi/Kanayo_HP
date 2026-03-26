@@ -1,36 +1,416 @@
-<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<title>Kanayo Higashi</title>
-<meta name="keywords" content="ページのキーワードA,B,C">
-<meta name="description" content="ページの説明">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kanayo Higashi</title>
+<style>
+    :root {
+      --washi:   #f7f4ef;
+      --sumi:    #1c1a17;
+      --hai:     #8a8680;
+      --usuzumi: #4a4844;
+      --beni:    #8b2020;
+      --kei:     #ccc8c1;
+      --serif:   'Noto Serif JP', 'Yu Mincho', '游明朝', serif;
+      --sans:    'Noto Sans JP', 'Yu Gothic', '游ゴシック', sans-serif;
+    }
+ 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+ 
+    body {
+      background: var(--washi);
+      color: var(--sumi);
+      font-family: var(--serif);
+      font-weight: 300;
+      line-height: 2;
+      -webkit-font-smoothing: antialiased;
+    }
+ 
+    /* ─── LAYOUT ─── */
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+ 
+    /* ─── HEADER ─── */
+    header {
+      padding: 5rem 0 4rem;
+      border-bottom: 1px solid var(--kei);
+    }
+ 
+    .site-kana {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--hai);
+      display: block;
+      margin-bottom: 1.8rem;
+    }
+ 
+    .name-ja {
+      font-size: 2.6rem;
+      font-weight: 200;
+      letter-spacing: 0.18em;
+      line-height: 1.2;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+ 
+    .name-en {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--hai);
+      display: block;
+      margin-bottom: 2rem;
+    }
+ 
+    .affil {
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--usuzumi);
+      letter-spacing: 0.08em;
+      line-height: 1.9;
+    }
+ 
+    .affil-item {
+      display: flex;
+      gap: 1.2em;
+      align-items: baseline;
+    }
+ 
+    .affil-label {
+      font-size: 0.68rem;
+      color: var(--hai);
+      letter-spacing: 0.12em;
+      min-width: 4em;
+      flex-shrink: 0;
+    }
+ 
+    /* ─── NAV ─── */
+    nav {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+ 
+    nav a {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--hai);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+ 
+    nav a:hover {
+      color: var(--beni);
+      border-bottom-color: var(--beni);
+    }
+ 
+    /* ─── SECTION BASE ─── */
+    .sec {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--kei);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+ 
+    .sec.visible {
+      opacity: 1;
+      transform: none;
+    }
+ 
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+ 
+    .sec-title {
+      font-size: 0.7rem;
+      font-family: var(--sans);
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--beni);
+    }
+ 
+    .sec-title-ja {
+      font-size: 1.35rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+    }
+ 
+    /* ─── ABOUT ─── */
+    .about-text {
+      font-size: 0.95rem;
+      line-height: 2.2;
+      color: var(--usuzumi);
+      max-width: 560px;
+    }
+ 
+    /* ─── RESEARCH ─── */
+    .research-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+ 
+    .research-item {
+      display: grid;
+      grid-template-columns: 1px 1fr;
+      gap: 0 1.8rem;
+    }
+ 
+    .r-line {
+      background: var(--kei);
+      position: relative;
+    }
+ 
+    .r-line::before {
+      content: '';
+      position: absolute;
+      top: 0.3em;
+      left: -2px;
+      width: 5px;
+      height: 5px;
+      background: var(--beni);
+      border-radius: 50%;
+    }
+ 
+    .r-theme {
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      color: var(--hai);
+      margin-bottom: 0.3rem;
+    }
+ 
+    .r-title {
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+ 
+    .r-desc {
+      font-size: 0.85rem;
+      color: var(--usuzumi);
+      line-height: 2;
+    }
+ 
+    /* ─── PUBLICATIONS ─── */
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+    }
+ 
+    .pub-item {
+      display: grid;
+      grid-template-columns: 3.5rem 1fr;
+      gap: 0 1.5rem;
+      padding: 1.6rem 0;
+      border-top: 1px solid var(--kei);
+      transition: background 0.15s;
+    }
+ 
+    .pub-item:last-child { border-bottom: 1px solid var(--kei); }
+ 
+    .pub-year {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--hai);
+      letter-spacing: 0.05em;
+      padding-top: 0.15em;
+    }
+ 
+    .pub-title {
+      font-size: 0.92rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      line-height: 1.75;
+      margin-bottom: 0.3rem;
+    }
+ 
+    .pub-venue {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--hai);
+      letter-spacing: 0.04em;
+    }
+ 
+    .pub-tag {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      padding: 0.1em 0.6em;
+      border: 1px solid var(--beni);
+      color: var(--beni);
+      margin-left: 0.6em;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+    }
+ 
+    /* ─── NEWS ─── */
+    .news-list {
+      display: flex;
+      flex-direction: column;
+    }
+ 
+    .news-item {
+      display: grid;
+      grid-template-columns: 5.5rem 1fr;
+      gap: 0 1.5rem;
+      padding: 1.2rem 0;
+      border-top: 1px solid var(--kei);
+    }
+ 
+    .news-item:last-child { border-bottom: 1px solid var(--kei); }
+ 
+    .news-date {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 300;
+      color: var(--hai);
+      letter-spacing: 0.04em;
+      padding-top: 0.1em;
+    }
+ 
+    .news-body {
+      font-size: 0.88rem;
+      line-height: 1.85;
+    }
+ 
+    /* ─── KEYWORDS ─── */
+    .kw-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+ 
+    .kw {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      padding: 0.3em 0.9em;
+      border: 1px solid var(--kei);
+      color: var(--usuzumi);
+      cursor: default;
+      transition: border-color 0.2s, color 0.2s;
+    }
+ 
+    .kw:hover { border-color: var(--beni); color: var(--beni); }
+ 
+    /* ─── CONTACT ─── */
+    .contact-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+ 
+    .ct-row {
+      display: grid;
+      grid-template-columns: 5rem 1fr;
+      gap: 0 1.5rem;
+      align-items: baseline;
+    }
+ 
+    .ct-label {
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--hai);
+    }
+ 
+    .ct-val {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: var(--usuzumi);
+    }
+ 
+    .ct-val a {
+      color: var(--usuzumi);
+      text-decoration: none;
+      border-bottom: 1px solid var(--kei);
+      transition: color 0.2s, border-color 0.2s;
+    }
+ 
+    .ct-val a:hover { color: var(--beni); border-color: var(--beni); }
+ 
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 3rem 0 4rem;
+    }
+ 
+    .footer-inner {
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: var(--hai);
+      text-align: center;
+    }
+ 
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 600px) {
+      .wrap { padding: 0 1.4rem; }
+      header { padding: 3.5rem 0 3rem; }
+      .name-ja { font-size: 2rem; }
+      .pub-item { grid-template-columns: 2.8rem 1fr; }
+      .ct-row { grid-template-columns: 4rem 1fr; }
+    }
+  </style>
 </head>
+  
+
+
 <body>
-<div id="outer">
-<header><h1>Kanayo Higashi</h1>
-<p></p>
-</header>
-<div id="content">
-<div class="inner"><h2>About me</h2>
-<p>北海道大学文学院人間科学専攻　行動科学講座　修士１年です</p>
-<h3>記事ページ見出し・中</h3>
-<p>文章あれこれ</p>
-<h4>記事ページ見出し・小</h4>
-<p>文章あれこれ</p>
-</div>
-</div>
-<aside>
-<div class="right-title">サイドバータイトル</div>
-<div class="link">
-<ul>
-<li>記事ページへのリンク</li>
-<li>記事ページへのリンク</li>
-</ul>
-</div>
-</aside>
-<footer>© 2010 あなたのホームページ</footer>
+<div class="wrap">
+ 
+  <!-- HEADER -->
+  <header>
+    <span class="site-kana">ひがし　かなよ</span>
+    <span class="name-ja">東　叶世</span>
+    <span class="name-en">Kanayo Higashi</span>
+    <div class="affil">
+      <div class="affil-item">
+        <span class="affil-label">所属</span>
+        <span>北海道大学文学院　人間科学専攻行動科学講座　修士1年</span>
+      </div>
+      <div class="affil-item">
+        <span class="affil-label">専門</span>
+        <span>社会心理学、認知科学</span>
+      </div>
+    </div>
+    <nav>
+      <a href="#about">About me</a>
+      <a href="#presentaion">Presentaion</a>
+      <a href="#publications">Publications</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
 </div></body>
 </html>
