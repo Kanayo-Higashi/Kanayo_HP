@@ -5,17 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kanayo Higashi</title>
 <style>
-    :root {
-      --washi:   #f7f4ef;
-      --sumi:    #1c1a17;
-      --hai:     #8a8680;
-      --usuzumi: #4a4844;
-      --beni:    #8b2020;
-      --kei:     #ccc8c1;
-      --serif:   'Noto Serif JP', 'Yu Mincho', '游明朝', serif;
-      --sans:    'Noto Sans JP', 'Yu Gothic', '游ゴシック', sans-serif;
-    }
- 
+        :root {
+            --washi:   #f7f4ef;
+            --sumi:    #1c1a17;
+            --hai:     #8a8680;
+            --usuzumi: #4a4844;
+            --beni:    #8b2020;
+            --kei:     #ccc8c1;
+            --serif:   'Noto Serif JP', 'Yu Mincho', '游明朝', serif;
+            --sans:    'Noto Sans JP', 'Yu Gothic', '游ゴシック', sans-serif;
+        }
+
+        body {
+            /* 背景色を指定 */
+            background-color: var(--washi);
+            /* フォントを游ゴシックに指定 */
+            font-family: var(--sans);
+            /* 文字色を墨色にして読みやすく */
+            color: var(--sumi);
+            
+            line-height: 1.6;
+            margin: 0;
+            padding: 2em;
+        }
+
+        h1 {
+            border-bottom: 2px solid var(--beni); /* 紅色の下線 */
+            padding-bottom: 0.5em;
+        }
+
+        p {
+            max-width: 600px;
+        }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; scroll-behavior: smooth; }
  
