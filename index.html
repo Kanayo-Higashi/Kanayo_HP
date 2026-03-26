@@ -12,24 +12,24 @@
 
     <style>
         :root {
-            --washi:   #f7f4ef; /* 和紙色 */
-            --sumi:    #1c1a17; /* 墨色 */
-            --usuzumi: #4a4844; /* 薄墨色 */
-            --beni:    #8b2020; /* 紅色（アクセント） */
-            --kei:     #ccc8c1; /* 罫線色 */
+            --washi:   #f7f4ef;
+            --sumi:    #1c1a17; 
+            --usuzumi: #4a4844; 
+            --beni:    #8b2020; 
+            --kei:     #ccc8c1; 
             --font-main: 'Zen Maru Gothic', sans-serif;
         }
 
         body {
-            background-color: #f0e8c6; /* 元のCSSの背景色を活かしました */
+            background-color: #f0e8c6;
             margin: 0;
             padding: 0;
             line-height: 1.8;
             font-family: var(--font-main);
             color: var(--sumi);
-        }
+            html {scroll-behavior: smooth;}
+    }
 
-        /* 中央寄せのコンテナ */
         #outer {
             background-color: #fff;
             margin: 0 auto;
@@ -38,7 +38,6 @@
             min-height: 100vh;
         }
 
-        /* ヘッダー部分（和風モダン） */
         .site-header {
             text-align: center;
             padding: 4rem 1rem 2rem;
@@ -64,7 +63,6 @@
             margin: 0.3rem 0;
         }
 
-        /* ナビゲーション（タブ風） */
         .header-nav ul {
             list-style: none;
             padding: 0;
@@ -89,7 +87,6 @@
             border-bottom: 2px solid var(--beni);
         }
 
-        /* コンテンツエリア（今後の拡張用） */
         .inner {
             padding: 40px;
         }
@@ -136,7 +133,7 @@
             <p>2022年〜2026年　奈良女子大学文学部</p>
             <p>2026年〜現在　北海道大学文学院</p>
         </section>
-        <section id="p">
+        <section id="publications">
             <h2>Publications</h2>
             <p>
               2026年2月19日第3回　認知科学・社心若手リーグ（大阪大学）
