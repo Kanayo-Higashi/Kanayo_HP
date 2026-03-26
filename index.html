@@ -1,437 +1,166 @@
 
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kanayo Higashi</title>
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanayo Higashi / 東 叶世 - Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
         :root {
-            --washi:   #f7f4ef;
-            --sumi:    #1c1a17;
-            --hai:     #8a8680;
-            --usuzumi: #4a4844;
-            --beni:    #8b2020;
-            --kei:     #ccc8c1;
-            --serif:   'Noto Serif JP', 'Yu Mincho', '游明朝', serif;
-            --sans:    'Noto Sans JP', 'Yu Gothic', '游ゴシック', sans-serif;
+            --washi:   #f7f4ef; /* 和紙色 */
+            --sumi:    #1c1a17; /* 墨色 */
+            --usuzumi: #4a4844; /* 薄墨色 */
+            --beni:    #8b2020; /* 紅色（アクセント） */
+            --kei:     #ccc8c1; /* 罫線色 */
+            --font-main: 'Zen Maru Gothic', sans-serif;
         }
 
         body {
-            /* 背景色を指定 */
-            background-color: var(--washi);
-            /* フォントを游ゴシックに指定 */
-            font-family: var(--sans);
-            /* 文字色を墨色にして読みやすく */
-            color: var(--sumi);
-            
-            line-height: 1.6;
+            background-color: #f0e8c6; /* 元のCSSの背景色を活かしました */
             margin: 0;
-            padding: 2em;
+            padding: 0;
+            line-height: 1.8;
+            font-family: var(--font-main);
+            color: var(--sumi);
         }
 
-        h1 {
-            border-bottom: 2px solid var(--beni); /* 紅色の下線 */
-            padding-bottom: 0.5em;
+        /* 中央寄せのコンテナ */
+        #outer {
+            background-color: #fff;
+            margin: 0 auto;
+            width: 900px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            min-height: 100vh;
         }
 
-        p {
-            max-width: 600px;
+        /* ヘッダー部分（和風モダン） */
+        .site-header {
+            text-align: center;
+            padding: 4rem 1rem 2rem;
+            background: linear-gradient(to bottom, #fcfaf0, #fff);
+            border-bottom: 1px solid var(--kei);
         }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; scroll-behavior: smooth; }
- 
-    body {
-      background: var(--washi);
-      color: var(--sumi);
-      font-family: var(--serif);
-      font-weight: 300;
-      line-height: 2;
-      -webkit-font-smoothing: antialiased;
-    }
- 
-    /* ─── LAYOUT ─── */
-    .wrap {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 2.5rem;
-    }
- 
-    /* ─── HEADER ─── */
-    header {
-      padding: 5rem 0 4rem;
-      border-bottom: 1px solid var(--kei);
-    }
- 
-    .site-kana {
-      font-family: var(--sans);
-      font-size: 0.7rem;
-      font-weight: 300;
-      letter-spacing: 0.25em;
-      color: var(--hai);
-      display: block;
-      margin-bottom: 1.8rem;
-    }
- 
-    .name-ja {
-      font-size: 2.6rem;
-      font-weight: 200;
-      letter-spacing: 0.18em;
-      line-height: 1.2;
-      display: block;
-      margin-bottom: 0.4rem;
-    }
- 
-    .name-en {
-      font-family: var(--sans);
-      font-size: 0.85rem;
-      font-weight: 300;
-      letter-spacing: 0.2em;
-      color: var(--hai);
-      display: block;
-      margin-bottom: 2rem;
-    }
- 
-    .affil {
-      font-family: var(--sans);
-      font-size: 0.8rem;
-      font-weight: 300;
-      color: var(--usuzumi);
-      letter-spacing: 0.08em;
-      line-height: 1.9;
-    }
- 
-    .affil-item {
-      display: flex;
-      gap: 1.2em;
-      align-items: baseline;
-    }
- 
-    .affil-label {
-      font-size: 0.68rem;
-      color: var(--hai);
-      letter-spacing: 0.12em;
-      min-width: 4em;
-      flex-shrink: 0;
-    }
- 
-    /* ─── NAV ─── */
-    nav {
-      margin-top: 2.5rem;
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
- 
-    nav a {
-      font-family: var(--sans);
-      font-size: 0.72rem;
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      color: var(--hai);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      padding-bottom: 1px;
-      transition: color 0.2s, border-color 0.2s;
-    }
- 
-    nav a:hover {
-      color: var(--beni);
-      border-bottom-color: var(--beni);
-    }
- 
-    /* ─── SECTION BASE ─── */
-    .sec {
-      padding: 4rem 0;
-      border-bottom: 1px solid var(--kei);
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
- 
-    .sec.visible {
-      opacity: 1;
-      transform: none;
-    }
- 
-    .sec-head {
-      display: flex;
-      align-items: baseline;
-      gap: 1.2rem;
-      margin-bottom: 2.5rem;
-    }
- 
-    .sec-title {
-      font-size: 0.7rem;
-      font-family: var(--sans);
-      font-weight: 300;
-      letter-spacing: 0.3em;
-      color: var(--beni);
-    }
- 
-    .sec-title-ja {
-      font-size: 1.35rem;
-      font-weight: 300;
-      letter-spacing: 0.12em;
-    }
- 
-    /* ─── ABOUT ─── */
-    .about-text {
-      font-size: 0.95rem;
-      line-height: 2.2;
-      color: var(--usuzumi);
-      max-width: 560px;
-    }
- 
-    /* ─── RESEARCH ─── */
-    .research-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2.2rem;
-    }
- 
-    .research-item {
-      display: grid;
-      grid-template-columns: 1px 1fr;
-      gap: 0 1.8rem;
-    }
- 
-    .r-line {
-      background: var(--kei);
-      position: relative;
-    }
- 
-    .r-line::before {
-      content: '';
-      position: absolute;
-      top: 0.3em;
-      left: -2px;
-      width: 5px;
-      height: 5px;
-      background: var(--beni);
-      border-radius: 50%;
-    }
- 
-    .r-theme {
-      font-family: var(--sans);
-      font-size: 0.65rem;
-      font-weight: 300;
-      letter-spacing: 0.18em;
-      color: var(--hai);
-      margin-bottom: 0.3rem;
-    }
- 
-    .r-title {
-      font-size: 1rem;
-      font-weight: 400;
-      letter-spacing: 0.05em;
-      line-height: 1.7;
-      margin-bottom: 0.5rem;
-    }
- 
-    .r-desc {
-      font-size: 0.85rem;
-      color: var(--usuzumi);
-      line-height: 2;
-    }
- 
-    /* ─── PUBLICATIONS ─── */
-    .pub-list {
-      display: flex;
-      flex-direction: column;
-    }
- 
-    .pub-item {
-      display: grid;
-      grid-template-columns: 3.5rem 1fr;
-      gap: 0 1.5rem;
-      padding: 1.6rem 0;
-      border-top: 1px solid var(--kei);
-      transition: background 0.15s;
-    }
- 
-    .pub-item:last-child { border-bottom: 1px solid var(--kei); }
- 
-    .pub-year {
-      font-family: var(--sans);
-      font-size: 0.72rem;
-      font-weight: 300;
-      color: var(--hai);
-      letter-spacing: 0.05em;
-      padding-top: 0.15em;
-    }
- 
-    .pub-title {
-      font-size: 0.92rem;
-      font-weight: 400;
-      letter-spacing: 0.03em;
-      line-height: 1.75;
-      margin-bottom: 0.3rem;
-    }
- 
-    .pub-venue {
-      font-family: var(--sans);
-      font-size: 0.72rem;
-      font-weight: 300;
-      color: var(--hai);
-      letter-spacing: 0.04em;
-    }
- 
-    .pub-tag {
-      display: inline-block;
-      font-family: var(--sans);
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      padding: 0.1em 0.6em;
-      border: 1px solid var(--beni);
-      color: var(--beni);
-      margin-left: 0.6em;
-      vertical-align: middle;
-      position: relative;
-      top: -1px;
-    }
- 
-    /* ─── NEWS ─── */
-    .news-list {
-      display: flex;
-      flex-direction: column;
-    }
- 
-    .news-item {
-      display: grid;
-      grid-template-columns: 5.5rem 1fr;
-      gap: 0 1.5rem;
-      padding: 1.2rem 0;
-      border-top: 1px solid var(--kei);
-    }
- 
-    .news-item:last-child { border-bottom: 1px solid var(--kei); }
- 
-    .news-date {
-      font-family: var(--sans);
-      font-size: 0.7rem;
-      font-weight: 300;
-      color: var(--hai);
-      letter-spacing: 0.04em;
-      padding-top: 0.1em;
-    }
- 
-    .news-body {
-      font-size: 0.88rem;
-      line-height: 1.85;
-    }
- 
-    /* ─── KEYWORDS ─── */
-    .kw-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 0.5rem;
-    }
- 
-    .kw {
-      font-family: var(--sans);
-      font-size: 0.7rem;
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      padding: 0.3em 0.9em;
-      border: 1px solid var(--kei);
-      color: var(--usuzumi);
-      cursor: default;
-      transition: border-color 0.2s, color 0.2s;
-    }
- 
-    .kw:hover { border-color: var(--beni); color: var(--beni); }
- 
-    /* ─── CONTACT ─── */
-    .contact-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1.1rem;
-    }
- 
-    .ct-row {
-      display: grid;
-      grid-template-columns: 5rem 1fr;
-      gap: 0 1.5rem;
-      align-items: baseline;
-    }
- 
-    .ct-label {
-      font-family: var(--sans);
-      font-size: 0.68rem;
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      color: var(--hai);
-    }
- 
-    .ct-val {
-      font-size: 0.88rem;
-      line-height: 1.8;
-      color: var(--usuzumi);
-    }
- 
-    .ct-val a {
-      color: var(--usuzumi);
-      text-decoration: none;
-      border-bottom: 1px solid var(--kei);
-      transition: color 0.2s, border-color 0.2s;
-    }
- 
-    .ct-val a:hover { color: var(--beni); border-color: var(--beni); }
- 
-    /* ─── FOOTER ─── */
-    footer {
-      padding: 3rem 0 4rem;
-    }
- 
-    .footer-inner {
-      font-family: var(--sans);
-      font-size: 0.68rem;
-      font-weight: 300;
-      letter-spacing: 0.12em;
-      color: var(--hai);
-      text-align: center;
-    }
- 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 600px) {
-      .wrap { padding: 0 1.4rem; }
-      header { padding: 3.5rem 0 3rem; }
-      .name-ja { font-size: 2rem; }
-      .pub-item { grid-template-columns: 2.8rem 1fr; }
-      .ct-row { grid-template-columns: 4rem 1fr; }
-    }
-  </style>
+
+        .main-title {
+            font-size: 2.2rem;
+            color: var(--sumi);
+            margin: 0 0 0.5rem 0;
+            letter-spacing: 0.15em;
+            font-weight: 700;
+        }
+
+        .profile-info {
+            color: var(--usuzumi);
+            font-size: 0.95rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .profile-info p {
+            margin: 0.3rem 0;
+        }
+
+        /* ナビゲーション（タブ風） */
+        .header-nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 0;
+        }
+
+        .header-nav a {
+            text-decoration: none;
+            color: var(--usuzumi);
+            padding: 8px 4px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .header-nav a:hover {
+            color: var(--beni);
+            border-bottom: 2px solid var(--beni);
+        }
+
+        /* コンテンツエリア（今後の拡張用） */
+        .inner {
+            padding: 40px;
+        }
+
+        @media screen and (max-width: 900px) {
+            #outer { width: 100%; }
+            .header-nav ul { gap: 15px; font-size: 0.9rem; }
+        }
+    </style>
 </head>
-  
-
-
 <body>
-<div class="wrap">
- 
-  <!-- HEADER -->
-  <header>
-    <span class="site-kana">ひがし　かなよ</span>
-    <span class="name-ja">東　叶世</span>
-    <span class="name-en">Kanayo Higashi</span>
-    <div class="affil">
-      <div class="affil-item">
-        <span class="affil-label">所属</span>
-        <span>北海道大学文学院　人間科学専攻行動科学講座　修士1年</span>
-      </div>
-      <div class="affil-item">
-        <span class="affil-label">専門</span>
-        <span>社会心理学、認知科学</span>
-      </div>
-    </div>
-    <nav>
-      <a href="#about">About me</a>
-      <a href="#presentaion">Presentaion</a>
-      <a href="#publications">Publications</a>
-      <a href="#news">News</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
 
-</div></body>
+<div id="outer">
+    <header class="site-header">
+        <h1 class="main-title">Kanayo Higashi / 東　叶世</h1>
+        
+        <div class="profile-info">
+            <p class="affiliation">所属：北海道大学文学院　人間科学専攻　行動科学講座　修士１年</p>
+            <p class="specialty">専門：社会心理学、認知科学</p>
+        </div>
+
+        <nav class="header-nav">
+            <ul>
+                <li><a href="#about">About me</a></li>
+                <li><a href="#CV">CV</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="inner">
+        <section id="about">
+            <h2>About me</h2>
+            <p>
+                北海道大学大学院で社会心理学と認知科学を研究している大学院生です。<br>
+                現在は、人が他者の情報を割り引くという現象に関心を持っています。
+            </p>
+        </section>
+
+        <section id="CV">
+            <h2>CV</h2>
+            <p>2022年〜2026年　奈良女子大学文学部</p>
+            <p>2026年〜現在　北海道大学文学院</p>
+        </section>
+        <section id="Publications">
+            <h2>Publications</h2>
+            <p>
+              2026年2月19日第3回　認知科学・社心若手リーグ（大阪大学）
+            </p>
+            <p>
+              ー　東叶世・竹澤正哲　人は他者の助言を割り引くのか：ベイジアン統計モデルを用いた分析
+            </p>
+            <p>2026年1月10日第8回犬山認知行動研究会議（博多シティ）
+            </p>
+            <p>ー　東叶世・竹澤正哲　人は他者の助言を割り引くのか：ベイジアン統計モデルを用いた分析
+            </p>
+        </section>
+        <section id="News">
+            <h2>News</h2>
+            <p>2024年9月7日に行われた、日本心理学会『高校生・学部生プレゼンバトル』で大学生部門賞を受賞しました🏅
+            </p>
+        </section>
+        <section id="Contact">
+            <h2>Contact</h2>
+            <p>Mail : 1121higashi at gmail.com</p>
+            <p>X(Twitter) : at Kanayo_Higashi</p>
+        </section>
+    </main>
+</div>
+
+</body>
 </html>

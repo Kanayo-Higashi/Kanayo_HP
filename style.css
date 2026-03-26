@@ -102,11 +102,19 @@ h2 {
 	background-color: #E7F5FD;
 	border: 1px solid #C7DBE5;
 }
-h2 a {
-	font-weight: bold;
-	text-decoration: none;
-	color: #265699;
-}
+h2 {
+			font-size: 1.5rem;
+            color: var(--sumi);
+            border-left: 5px solid var(--beni); /* 左側に紅色のアクセント線 */
+            padding: 0.2rem 0.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            background-color: #faf8f2; /* ほんのり背景色 */
+        }
+
+        section {
+            margin-bottom: 3rem; /* セクションごとの間隔 */
+        }
 h3 {
 	font-size: 16px;
 	color: #000000;
