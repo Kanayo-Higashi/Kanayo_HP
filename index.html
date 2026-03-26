@@ -27,7 +27,9 @@
             line-height: 1.8;
             font-family: var(--font-main);
             color: var(--sumi);
-            html {scroll-behavior: smooth;}
+            html {
+    scroll-behavior: smooth;
+}
     }
 
         #outer {
@@ -110,33 +112,45 @@
 
         <nav class="header-nav">
             <ul>
-                <li><a href="#about">About me</a></li>
-                <li><a href="#CV">CV</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="javascript:void(0)" onclick="showTab('about')">About me</a></li>
+                <li><a href="javascript:void(0)" onclick="showTab('CV')">CV</a></li>
+                <li><a href="javascript:void(0)" onclick="showTab('publications')">Publications</a></li>
+                <li><a href="javascript:void(0)" onclick="showTab('news')">News</a></li>
+                <li><a href="javascript:void(0)" onclick="showTab('contact')">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="inner">
-        <section id="about">
+        <section id="about"class="tab-content">
             <h2>About me</h2>
-            <p>
-                北海道大学大学院で社会心理学と認知科学を研究している大学院生です。<br>
-                現在は、人が他者の情報を割り引くという現象に関心を持っています。
-            </p>
+             <img src="images/profile.jpg"  class="profile-img">
+
+    <p>
+        北海道大学大学院で社会心理学と認知科学を研究している大学院生です。<br>
+        現在は、人が他者の情報を割り引くという現象に関心を持っています。
+    </p>
         </section>
 
-        <section id="CV">
+        <section id="CV" class="tab-content">
             <h2>CV</h2>
             <p>2022年〜2026年　奈良女子大学文学部</p>
             <p>2026年〜現在　北海道大学文学院</p>
         </section>
-        <section id="publications">
-            <h2>Publications</h2>
+        <section id="publications" class="tab-content">
+            <h2>Papers</h2>
+            <h3> 学術論文
+            </h3>
+            <p>Coming soon...</p>
+            <h3>
+                学位論文
+            </h3>
             <p>
-              2026年2月19日第3回　認知科学・社心若手リーグ（大阪大学）
+                東叶世（2025）人は他者の助言を割り引くのか：ベイジアン統計モデルを用いた分析（奈良女子大学 卒業論文）
+            </p>
+            <h2>Presentations</h2>
+            <p>
+              2026年2月19日第3回認知科学・社心若手リーグ（大阪大学）
             </p>
             <p>
               ー　東叶世・竹澤正哲　人は他者の助言を割り引くのか：ベイジアン統計モデルを用いた分析
@@ -146,18 +160,77 @@
             <p>ー　東叶世・竹澤正哲　人は他者の助言を割り引くのか：ベイジアン統計モデルを用いた分析
             </p>
         </section>
-        <section id="news">
+        <section id="news" class="tab-content">
             <h2>News</h2>
+            <p>2025年7月　令和6年度の成績優秀者に選ばれました🏆</p>
             <p>2024年9月7日に行われた、日本心理学会『高校生・学部生プレゼンバトル』で大学生部門賞を受賞しました🏅
             </p>
         </section>
-        <section id="contact">
+        <section id="contact" class="tab-content">
             <h2>Contact</h2>
-            <p>Mail : 1121higashi at gmail.com</p>
-            <p>X(Twitter) : at Kanayo_Higashi</p>
+            <p>
+            ・〒060-0810  北海道北海道札幌市北区北10条西7丁目 北海道大学大学院文学院 行動科学研究室
+            </p>
+            <p>・Mail : 1121higashi at gmail.com</p>
+            <p>・ X (Twitter) : 
+  <a href="https://x.com/Kanayo_Higashi" target="_blank" rel="noopener noreferrer">
+    @Kanayo_Higashi ↗
+  </a>
+</p>
         </section>
     </main>
 </div>
+<script>
+function showTab(tabId) {
+    const contents = document.querySelectorAll('.tab-content');
+    contents.forEach(content => {
+        content.style.display = 'none';
+    });
+    const target = document.getElementById(tabId);
+    if (target) {
+        target.style.display = 'block';
+    }
+}
+window.onload = function() {
+    showTab('about');
+};
+</script>
+<style>
+    .tab-content {
+        display: none; 
+        animation: fadeIn 0.5s; 
+    }
 
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    h2 {
+    font-size: 1.5rem;
+    color: var(--sumi);
+    border-left: 5px solid var(--beni);
+    border-bottom: 2px solid var(--beni);
+    padding: 0.2rem 0.8rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    background-color: #faf8f2;
+}
+h3 {
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    padding-left: 10px;
+    border-left: 3px solid var(--kei);
+    color: var(--usuzumi);
+}
+.tab-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.profile-img {
+    width: 150px;
+    border-radius: 50%;
+}
+</style>
 </body>
 </html>
