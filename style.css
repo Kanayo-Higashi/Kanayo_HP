@@ -67,10 +67,11 @@ ul {
 p {
 	margin: 1em 0;
 }
-img {
-	max-width: 100%;
-	height: auto;
-	border: 0;
+img.profile-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 hr {
 	border-width: 1px 0 0 0;
@@ -168,9 +169,3 @@ blockquote {
     gap: 20px;
 }
 
-.profile-img {
-    width: 150px;
-    height: 150px;      
-    object-fit: cover; 
-    border-radius: 50%;
-}
